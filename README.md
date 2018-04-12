@@ -28,3 +28,69 @@ This command will start Chrome in headless mode (i.e., no GUI) and run the scrip
  ```
  java -jar WebGoat-Selenium.jar -help
  ```
+
+## List of Options
+
+A complete list of options and switches is listed below.
+
+**Option:** `-host`  
+**Description:** Hostname of server.  
+**Default Value:** `localhost`
+
+**Option:** `-port`  
+**Description:** Port number of server.  
+**Default Value:** `80` (without `-ssl` switch) and `443` (with `-ssl` switch).
+
+**Switch:** `-ssl`  
+**Description:** Enable SSL ("https://"). Does not take an argument.
+
+**Option:** `-cr`  
+**Description:** Context root of website.  
+**Default Value:** `/WebGoat`
+
+**Option:** `-un`  
+**Description:** Username of website.  
+**Default Value:** `testun`
+
+**Option:** `-pw`  
+**Description:** Password of website.  
+**Default Value:** `testpw`
+
+**Switch:** `-headless`  
+**Description:** Enable headless mode for Chrome or Firefox. Does not take an argument.  
+**Note:** Supported on Chrome 59+ or Firefox 55+ on Linux or Firefox 56+ on Windows/Mac.
+
+**Switch:** `-chrome`  
+**Description:** Use Chrome browser. Does not take an argument.  
+**Note:** Cannot be specified in combination with the `-firefox` switch. If neither `-chrome` nor `-firefox` are specified, Firefox will be the default browser.
+
+**Switch:** `-firefox`  
+**Description:** Use Firefox browser. Does not take an argument.  
+**Note:** Cannot be specified in combination with the `-chrome` switch. If neither `-chrome` nor `-firefox` are specified, Firefox will be the default browser.
+
+**Option:** `-bin`  
+**Description:** Absolute path to the Chrome or Firefox binary.  
+**Note:** If left undefined, the driver will attempt to deduce the default location on the current system.
+
+**Option:** `-driver`  
+**Description:** Absolute path to the Chrome driver or Firefox driver (GeckoDriver).  
+**Default Value (Chrome on Linux):** `/usr/lib/chromium-browser/chromedriver`  
+**Default Value (Chrome on Mac OS X):** `/Applications/Google Chrome.app/Contents/MacOS/chromedriver`  
+**Default Value (Chrome on Windows):** `C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe`  
+**Default Value (Firefox on Linux):** `/usr/lib64/firefox/geckodriver`  
+**Default Value (Firefox on Mac OS X):** `/Applications/Firefox.app/Contents/MacOS/geckodriver`  
+**Default Value (Firefox on Windows):** `C:\Program Files\Mozilla Firefox\geckodriver.exe`  
+**Note:** The latest drivers can be found here:
+[Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads) | [Firefox](https://github.com/mozilla/geckodriver/releases)
+
+
+##Usage Examples
+
+**Goal:** Run script on https://www.WebGoat.com using Chrome browser in headless mode.  
+**Command:** `java -jar WebGoat-Selenium.jar -host webgoat -ssl -chrome -headless`
+
+**Goal:** Run script on https://www.WebGoat.com using Firefox browser.  
+**Command:** ``java -jar WebGoat-Selenium.jar -host www.WebGoat.com -ssl``
+
+**Goal:** Run script on http://qa-machine:8080 using Firefox browser in headless mode.  
+**Command:** ``java -jar WebGoat-Selenium.jar -host qa-machine -port 8080 -headless``
