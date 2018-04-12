@@ -84,7 +84,7 @@ A complete list of options and switches is listed below.
 [Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads) | [Firefox](https://github.com/mozilla/geckodriver/releases)
 
 
-##Usage Examples
+## Usage Examples
 
 **Goal:** Run script on https://www.WebGoat.com using Chrome browser in headless mode.  
 **Command:** `java -jar WebGoat-Selenium.jar -host webgoat -ssl -chrome -headless`
