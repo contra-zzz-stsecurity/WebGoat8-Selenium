@@ -48,6 +48,7 @@ public class ChromeScript {
 
             // Navigate to String SQL Injection section
             driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/6");
+            delay(1000);
             retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[9]/div[2]/form/table/tbody/tr/td[2]/input"), "' OR '1'='1");
             // driver.findElement(By.name("account")).sendKeys("' OR '1'='1");
             driver.findElement(By.name("Get Account Info")).click();
