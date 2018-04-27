@@ -123,7 +123,7 @@ public class ChromeScript {
             driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[5]/div[2]/form/input")).submit();
             driver.findElement(By.name("attributes")).sendKeys("role,userId");
             driver.findElement(By.name("Submit Diffs")).submit();
-            System.out.println("Finished!");
+            System.out.println("Successfully finished Chrome script!");
         } finally {
             driver.quit();
         }
