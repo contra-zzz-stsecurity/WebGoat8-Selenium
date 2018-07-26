@@ -86,11 +86,11 @@ A complete list of options and switches is listed below.
 
 ## Usage Examples
 
-**Goal:** Run script on https://www.WebGoat.com using Chrome browser in headless mode.  
-**Command:** `java -jar WebGoat-Selenium.jar -host webgoat -ssl -chrome -headless`
+**Goal:** Run script on https://www.webgoat.com using Chrome browser in headless mode.  
+**Command:** `java -jar WebGoat-Selenium.jar -host www.webgoat.com -ssl -chrome -headless`
 
-**Goal:** Run script on https://www.WebGoat.com using Firefox browser.  
-**Command:** ``java -jar WebGoat-Selenium.jar -host www.WebGoat.com -ssl``
+**Goal:** Run script on https://www.webgoat.com using Firefox browser.  
+**Command:** ``java -jar WebGoat-Selenium.jar -host www.webgoat.com -ssl``
 
 **Goal:** Run script on http://qa-machine:8080 using Firefox browser in headless mode.  
 **Command:** ``java -jar WebGoat-Selenium.jar -host qa-machine -port 8080 -headless``
