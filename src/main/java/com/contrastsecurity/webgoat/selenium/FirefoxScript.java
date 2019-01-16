@@ -4,12 +4,13 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class FirefoxScript {
-    public static void run(String un, String pw, String url, boolean headless, String gecko, String browserBin) {
+    public static void run(String un, String pw, String url, boolean headless, boolean proxy, String proxyHost, String proxyPort, String gecko, String browserBin) {
         FirefoxBinary firefoxBinary = new FirefoxBinary();
         if (!browserBin.equals("null")) {
             File bin = new File(browserBin);
@@ -21,6 +22,11 @@ public class FirefoxScript {
         System.setProperty("webdriver.gecko.driver", gecko);
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setBinary(firefoxBinary);
+        if (proxy) {
+            Proxy p = new Proxy();
+            p.setHttpProxy(proxyHost + ":" + proxyPort);
+            firefoxOptions.setProxy(p);
+        }
         FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
 
         try {
